@@ -192,6 +192,111 @@
   .counter{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:12px}
   .counter .box{background:#111;color:white;padding:10px 12px;border-radius:8px;font-weight:800;min-width:52px;text-align:center}
 
+  /* === O QUE LEVAR - NOVA SEÇÃO === */
+  .itens {
+    background: var(--bege);
+    padding: 80px 20px;
+  }
+  
+  .itens .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .itens .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .itens .section-title h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--deep);
+    font-weight: 700;
+  }
+  
+  .itens .subtitulo {
+    text-align: center;
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.5;
+  }
+  
+  .container-itens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  
+  .categoria-item {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--accent);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .categoria-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+  
+  .categoria-item h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    color: var(--deep);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .categoria-item ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+  
+  .categoria-item li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    padding-left: 24px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  
+  .categoria-item li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    background: rgba(249, 115, 22, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  .categoria-item li:last-child {
+    border-bottom: none;
+  }
+
   /* Programação / O que levar */
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .info-card{background:linear-gradient(180deg,#fff,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
@@ -205,6 +310,9 @@
     .tickets{grid-template-columns:1fr}
     .pay-grid{grid-template-columns:repeat(2,1fr)}
     .grid-2{grid-template-columns:1fr}
+    .container-itens {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (max-width:640px){
     .nav-links{display:none; position:absolute; top:100%; left:0; width:100%; background:rgba(0,0,0,0.9); flex-direction:column; padding:20px; gap:15px;}
@@ -213,6 +321,9 @@
     .hero-right{display:none}
     .cards-grid{grid-template-columns:1fr}
     .pay-grid{grid-template-columns:1fr}
+    .container-itens {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* smooth scroll between sections */
@@ -220,7 +331,7 @@
 
   /* accessibility: reduce motion */
   @media (prefers-reduced-motion: reduce){
-    .cta, .card, .ticket, .hero-inner{transition:none;animation:none}
+    .cta, .card, .ticket, .hero-inner, .categoria-item{transition:none;animation:none}
   }
 </style>
 </head>
@@ -241,7 +352,7 @@
       <a href="#valores">Valores</a>
       <a href="#grupo">Grupo</a>
       <a href="#pagamento">Pagamento</a>
-      <a href="#programacao">Programação</a>
+      <a href="#itens">O Que Levar</a>
       <a href="https://forms.office.com/r/0X77nL6GHk" class="cta" style="padding:8px 12px;background:rgba(255,255,255,0.12);font-weight:700" target="_blank">Quero participar</a>
     </div>
 
@@ -462,29 +573,51 @@
     </div>
   </section>
 
-  <!-- Programação / O que levar -->
-  <section id="programacao" class="container" style="margin-top:18px">
-    <div class="section-title"><h2>📋 Programação & O que levar</h2></div>
-    <div class="grid-2">
-      <div class="info-card">
-        <h3 style="margin-top:0">Programação (exemplo)</h3>
-        <ul style="margin:12px 0 0 18px;color:var(--muted)">
-          <li>Recepção e montagem: 8h - 10h</li>
-          <li>Oficinas infantis e trilhas: 10h - 12h</li>
-          <li>Almoço comunitário: 12h30</li>
-          <li>Tarde de jogos e roda de música: 15h - 18h</li>
-          <li>Fogueira e confraternização: 20h</li>
-        </ul>
+  <!-- O QUE LEVAR - MELHORADO -->
+  <section id="itens" class="itens" aria-labelledby="itensTitle">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="itensTitle">🎒 O Que Levar</h2>
       </div>
-      <div class="info-card">
-        <h3 style="margin-top:0">O que levar</h3>
-        <ul style="margin:12px 0 0 18px;color:var(--muted)">
-          <li>Anoraque/roupa para chuva</li>
-          <li>Isolante/colchonete e saco de dormir</li>
-          <li>Lanterna, kit higiene e repelente</li>
-          <li>Pratos/colheres reutilizáveis (ecologia)</li>
-          <li>Documentos e comprovante de pagamento</li>
-        </ul>
+      <p class="subtitulo">Prepare-se para uma experiência completa e confortável no acampamento</p>
+      
+      <div class="container-itens">
+        <div class="categoria-item">
+          <h3>🏕️ Acampamento</h3>
+          <ul>
+            <li>Barraca (com toldo impermeável)</li>
+            <li>Colchonete ou inflável</li>
+            <li>Saco de dormir ou cobertor</li>
+            <li>Lanterna ou headlamp</li>
+            <li>Power bank extra</li>
+            <li>Cadeira de acampamento</li>
+            <li>Pratos/colheres reutilizáveis (ecologia)</li>
+          </ul>
+        </div>
+        
+        <div class="categoria-item">
+          <h3>👕 Vestuário</h3>
+          <ul>
+            <li>Roupas confortáveis para atividades</li>
+            <li>Agasalhos para noites frias</li>
+            <li>Roupas de banho</li>
+            <li>Toalhas de banho e rosto</li>
+            <li>Calçados fechados e tênis</li>
+            <li>Chinelos para áreas comuns</li>
+          </ul>
+        </div>
+        
+        <div class="categoria-item">
+          <h3>🧼 Higiene & Saúde</h3>
+          <ul>
+            <li>Kit higiene pessoal completo</li>
+            <li>Protetor solar FPS 30+</li>
+            <li>Repelente de insetos</li>
+            <li>Medicamentos de uso pessoal</li>
+            <li>Kit primeiros socorros básico</li>
+            <li>Lenços umedecidos e álcool gel</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -555,12 +688,9 @@
         indPrice.textContent = 'R$ ' + prices.lote1.individual.toFixed(2).replace('.',',');
         // show promo badge if present
         document.getElementById('promBadge').style.display = prices.lote1.promocional ? 'inline-block' : 'none';
-        // set active countdown target - CORRIGIDO: datas futuras
-        setCountdownTarget(new Date('2025-01-18T23:59:59'));
       } else {
         indPrice.textContent = 'R$ ' + prices.lote2.individual.toFixed(2).replace('.',',');
         document.getElementById('promBadge').style.display = 'none';
-        setCountdownTarget(new Date('2025-02-12T23:59:59'));
       }
     }
 
@@ -584,7 +714,7 @@
   }
 
     // Simple smooth reveal for cards on scroll (microinteraction)
-    const observers = document.querySelectorAll('.card, .ticket, .pay-card, .info-card');
+    const observers = document.querySelectorAll('.card, .ticket, .pay-card, .info-card, .categoria-item');
     const obsOpt = {threshold:0.12};
     
     if ('IntersectionObserver' in window) {
